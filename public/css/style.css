@@ -1,0 +1,507 @@
+
+* {
+    outline: none !important;
+}
+
+/* font declaration */
+
+@font-face {
+    font-family: arciform;
+    src: url(../font/Arciform.otf);
+}
+
+/* end font declaration */
+/* my element declaration */
+p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.myfont-arciform {
+    font-family: arciform;
+}
+.bg-white {
+    background-color: #fff !important;
+}
+.text-white {
+    color: #fff !important;
+}
+.bg-gray {
+    background-color: #e5e5e5 !important;
+}
+.text-gray {
+    color: #e5e5e5 !important;
+}
+.absolutely {
+    left: 0;
+    top: 0;
+}
+.shadow-primary {
+    box-shadow: 0px 5px 10px rgba(132, 158, 251, 0.7);
+    transition: all .3s;
+}
+.shadow-primary:hover {
+    box-shadow: 0px 10px 20px rgba(132, 158, 251, 0.7);
+}
+.underline {
+    text-decoration: underline;
+}
+.overlay-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .35);
+}
+.shadow-danger {
+    box-shadow: 0px 5px 10px rgba(241, 96, 96, 0.7);
+    transition: all .3s;
+}
+.shadow-danger:hover {
+    box-shadow: 0px 10px 20px rgba(241, 96, 96, 0.7);
+}
+.shadow-warning {
+    box-shadow: 0px 5px 10px rgba(241, 207, 96, 0.7);
+    transition: all .3s;
+}
+.shadow-warning:hover {
+    box-shadow: 0px 10px 20px rgba(241, 207, 96, 0.7);
+}
+.bg-red {
+    background-color: #ee4141;
+}
+.clr-red {
+    color: #ee4141;
+}
+
+/* end my element declaration */
+
+/* nav declaration */
+header {
+    z-index: 1000 !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+#image_nav {
+    top: -2px;
+}
+#title_nav {
+    color: #ee4545;
+    font-family: arciform;
+    letter-spacing: 1px;
+}
+
+.icon-semu-nav-small {
+    bottom: 0;
+    right: 0px;
+    top: 0;
+}
+
+.form-search-small {
+    left: 0px !important;
+    right: 0px !important;
+}
+
+@media screen and (min-width: 768px) {
+    .menu-item, .menu-item a, .nav-item, .active-nav .nav-link {
+        transition: all .3s;
+        font-size: .8rem;
+        position: relative;
+        z-index: 100;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .menu-item:hover, .menu-item a:hover, .active-nav a.nav-link {
+        color: #ee4141 !important;
+    }
+    .menu-item::after, .active-nav::after {
+        content: '';
+        width: 80%;
+        height: 0px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: -10px;
+        background-color: #ee4141;
+        transition: all .3s;
+    }
+    .menu-item:hover::after, .active-nav::after {
+        height: 4px !important;
+    }
+}
+.search-toggle {
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.search-toggle:hover {
+    color: #ee4141;
+}
+
+.search-nav {
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    bottom: 0px;
+    width: 80%;
+}
+
+@media screen and (max-width: 1220px) {
+    .search-nav {
+        display: none;
+    }
+    .search-small-nav {
+        display: inline-block;
+        top: -2px;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1219px) {
+    .search-small-nav {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .menu-item, .menu-item a, .nav-item, .active-nav .nav-link {
+        transition: all .3s;
+        font-size: .8rem;
+        position: relative;
+        z-index: 100;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .menu-item:hover, .menu-item a:hover, .active-nav a.nav-link {
+        color: #ee4141 !important;
+    }
+    .search-lg-toggle {
+        display: none;
+    }
+    .menu-item::after, .active-nav::after {
+        content: '';
+        width: 0px;
+        height: 4px;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+        position: absolute;
+        left: 0px;
+        bottom: -5px;
+        background-color: #ee4141;
+        transition: all .3s;
+    }
+    .menu-item:hover::after, .active-nav::after {
+        width: 50% !important;
+    }
+
+    .nav-item {
+        font-size: .75rem;
+        margin: .7rem 0px 0px 0px;
+    }
+    .nav-item:nth-child(1) {
+        margin-top: 1.2rem;
+    }
+    .navbar::after {
+        content: '';
+        height: 58px;
+        border-bottom: 1px solid gainsboro;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid gainsboro;
+    }
+    #btn-login {
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+}
+
+.btn-menu-nav {
+    z-index: 100;
+}
+
+.btn-myprimary {
+    background-image: linear-gradient(to bottom left, #60daf8, #1067aa);
+    border: none;
+    transition: all .3s;
+}
+.btn-myprimary:hover {
+    background-image: linear-gradient(to bottom left, #2fb1d1, #094c80);
+}
+
+/* end nav declaration */
+/* jumbotron declaration */
+
+.carousel-inner-jumbotron {
+    height: 550px !important;
+    overflow: hidden !important;
+}
+.carousel-item-jumbotron .my-div-jumbotron img {
+    width: 100%;
+    height: auto;
+}
+.carousel-caption-jumbotron {
+    top: 200px !important;
+    bottom: 0px;
+    display: inline-block !important;
+}
+.carousel-caption-jumbotron h3 {
+    font-family: arciform;
+    font-size: 6rem !important;
+}
+.caraousel-indicators-jumbotron li {
+    width: 10px;
+    height: 10px;
+    transition: all .3s;
+    border-radius: 200px !important;
+    background-color: #ee4141;
+    display: inline-block;
+    border: none !important;
+}
+.caraousel-indicators-jumbotron .active {
+    width: 30px !important;
+    height: 10px;
+    transition: all .3s;
+    border-radius: 100px !important;
+    background-color: #ee4141;
+}
+@media screen and (max-width: 767px) {
+    .carousel-inner-jumbotron, .carousel-item-jumbotron .my-div-jumbotron {
+        height: 600px !important;
+    }
+    .carousel-item-jumbotron .my-div-jumbotron img {
+        width: auto !important;
+        height: 100% !important;
+    }
+}
+
+/* end jumbotron declaration */
+/* destination declaration */
+
+.top_destination {
+    border-radius: 6px;
+    height: 307px;
+    position: relative !important;
+    transition: all .3s;
+}
+.top_destination:hover {
+    transform: scale(1.01);
+}
+.top_destination_img {
+    height: 100% !important;
+    opacity: .75;
+}
+.top_destination_caption {
+    position: relative;
+    top: 130px;
+}
+.top_destination_caption h3 {
+    font-size: 2.5rem;
+}
+.slick-slide {
+    margin: 25px 10px !important;
+}
+.slick-dots li button {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 10px;
+    transition: all .3s;
+    color: #ee4141 !important;
+    background-color: #ee4141 !important;
+}
+.slick-dots li.slick-active button {
+    width: 20px !important;
+    height: 10px !important;
+    border-radius: 10px;
+    position: relative;
+    left: -5px;
+    transition: all .3s;
+    color: #ee4141 !important;
+    background-color: #ee4141 !important;
+}
+.slick-dots li button::before {
+    content: '' !important;
+}
+
+/* end destination declaration */
+/* festival declaration */
+
+.kriteria-fest {
+    top: -32px;
+    left: 0px;
+}
+.img-fest {
+    height: 250px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.img-fest img {
+    transition: all .3s;
+}
+.img-fest:hover img {
+    transform: scale(1.02);
+    opacity: .7;
+}
+.card-fest {
+    transition: all .3s;
+    border-radius: 5px !important;
+}
+.card-fest:hover {
+    box-shadow: 0px 20px 18px rgba(0, 0, 0, .15);
+    transform: translateY(-5px);
+}
+.card-body-fest {
+    position: absolute;
+    bottom: 0 !important;
+    background-color: white;
+    left: 0;
+    right: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.card-body-fest .card-text {
+    display: none;
+    font-size: .75rem;
+}
+.card-body-fest:hover .card-text {
+    display: inline-block;
+}
+.icon-fest, .date-fest {
+    color: gray;
+    font-size: .8rem;
+}
+
+/* end festival declaration */
+/* contact declaration */
+
+.add-contact {
+    right: 0;
+    top: 200px;
+}
+.bg-back-contact {
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    bottom: 0;
+    opacity: .15;
+}
+@media screen and (max-width: 767px) {
+    .ig-img-contact {
+        width: 75% !important;
+    }
+    .logo-img-parent {
+        left: -40px !important;
+    }
+    .logo-img-contact {
+        width: 50% !important;
+        left: 0 !important;
+    }
+}
+/* end contact declaration */
+/* jumbotron capt declaration */
+
+.jumbotron-capt {
+    background-image: url('../img/static/wall2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* end jumbotron capt declaration */
+
+/* footer declaration */
+
+.span-email {
+    cursor: pointer;
+}
+
+/* end footer declaration */
+
+
+
+/* destination_page */
+
+.jumbotron-destination-page {
+    height: 350px;
+    background-image: url('../img/static/wall1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+.card-destination-page {
+    height: 300px;
+    background-color: #ee4141;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .3s;
+}
+.card-destination-page img {
+    top: 0;
+    left: 0;
+    opacity: .85;
+    height: 100%;
+}
+.card-destination-title {
+    top: 120px;
+}
+.card-destination-des {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    right: 5%;
+    top: 310px;
+    transition: all .5s;
+    opacity: 0;
+    bottom: 5%;
+    background-color: white;
+    border-radius: 4px;
+}
+.card-destination-des p {
+    font-size: .95rem;
+}
+.icon-destination {
+    font-size: .8rem !important;
+}
+.card-destination-des button {
+    bottom: 10px;
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+}
+.card-destination-page:hover .card-destination-des {
+    top: 5%;
+    opacity: 1;
+}
+.card-destination-page:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, .15);
+}
+
+/* end destination page */
+/* travel page */
+
+.bg-banner {
+    opacity: .35;
+}
+.logo-banner-fest {
+    position: relative;
+    top: -20px;
+}
+.logo-lg-banner-fest {
+    right: 0;
+    top: -40px;
+    width: 100%;
+    opacity: 0.3;
+}
+@media screen and (max-width: 800px) {
+    .logo-lg-banner-fest {
+        width: 100% !important;
+    }
+}
+
+/* end travel page */
