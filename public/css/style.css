@@ -282,6 +282,10 @@ header {
 /* end jumbotron declaration */
 /* destination declaration */
 
+a:hover {
+    text-decoration: none !important;
+}
+
 .top_destination {
     border-radius: 6px;
     height: 307px;
@@ -432,7 +436,7 @@ header {
     background-attachment: fixed;
 }
 .card-destination-page {
-    height: 300px;
+    height: 280px;
     background-color: #ee4141;
     border-radius: 5px;
     overflow: hidden;
@@ -442,21 +446,24 @@ header {
     top: 0;
     left: 0;
     opacity: .85;
-    height: 100%;
+    height: 120%;
+    transform: translateY(-10%);
 }
 .card-destination-title {
-    top: 120px;
+    top: 100px;
+}
+.text-small {
+    font-size: .7rem !important;
+
 }
 .card-destination-des {
     position: absolute;
     width: 90%;
-    height: 90%;
     left: 5%;
     right: 5%;
-    top: 310px;
+    bottom: 310px;
     transition: all .5s;
     opacity: 0;
-    bottom: 5%;
     background-color: white;
     border-radius: 4px;
 }
@@ -474,7 +481,7 @@ header {
     right: 5%;
 }
 .card-destination-page:hover .card-destination-des {
-    top: 5%;
+    bottom: 5%;
     opacity: 1;
 }
 .card-destination-page:hover {
@@ -505,3 +512,50 @@ header {
 }
 
 /* end travel page */
+/* register page */
+
+.step-register div {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    color: black;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: .75rem;
+    font-family: arciform;
+}
+.auth-page {
+    background-image: url('../img/static/wall1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+.back-opacity {
+    opacity: .5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.bg-gradient-primary {
+    background: linear-gradient(to bottom right, #ee4141, #b81313) !important;
+}
+
+/* end register page */
+/* admin page */
+
+@media screen and (max-width: 767px) {
+    .navbar::after {
+        content: '';
+        display: none !important;
+        height: 58px;
+        border-bottom: 1px solid gainsboro;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid gainsboro;
+    }
+}
+/* end admin page */

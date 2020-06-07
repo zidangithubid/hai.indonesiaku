@@ -20,10 +20,10 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mt-4 px-4">
-            <form method="POST">
+            <form method="GET" action="">
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" name="name" id="name-destinations" class="form-control" placeholder="Cari destinasimu.." aria-describedby="helpId">
+                        <input type="text" name="key" id="key" class="form-control" placeholder="Cari destinasimu.." aria-describedby="helpId">
                         <div class="input-group-append">
                             <span class="input-group-text bg-white" id="basic-addon2">
                                 <i class="fas fa-search"></i>
@@ -32,30 +32,33 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <select name="ctr" id="ctr" class="form-control">
+                    <select name="category" id="category" class="form-control">
                         <option value="">Pilih Category</option>
-                        <option value="jawatimur">Gunung</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="prov" id="prov" class="form-control">
+                    <select name="province" id="province-select" class="form-control">
                         <option value="">Pilih Provinsi</option>
-                        <option value="jawatimur">Jawatimur</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="city" id="city" class="form-control">
+                    <select name="city" id="city-select" class="form-control">
                         <option value="">Pilih Kota / Kabupaten</option>
-                        <option value="malang">Malang</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="distict" id="distict" class="form-control">
+                    <select name="district" id="district-select" class="form-control">
                         <option value="">Pilih Kecamatan</option>
-                        <option value="malang">Kanjuruan</option>
                     </select>
                 </div>
                 <div class="text-right">
+                    <a class="btn btn-white shadow-sm px-4" role="button" href="{{ url('destinations') }}"><i class="fas fa-eye"></i> Lihat semua</a>
                     <button class="btn btn-warning shadow-warning px-5"><i class="fas fa-search-location"></i> Cari</button>
                 </div>
             </form>
@@ -63,47 +66,57 @@
         <div class="col-md-8 highlight-destinations">
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Malang</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawa</p>
-                    </div>
+                    <a href="{{ url('destinations?province=35&city=3507') }}">
+                        <img src="{{ asset('img/static/destinations/malang.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Malang</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawatimur</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Lombok</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi</p>
-                    </div>
+                    <a href="{{ url('destinations?province=52&city=5202') }}">
+                        <img src="{{ asset('img/static/destinations/lombok.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Lombok</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> NTB</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Makassar</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sumatra</p>
-                    </div>
+                    <a href="{{ url('destinations?province=73&city=7371') }}">
+                        <img src="{{ asset('img/static/destinations/makassar.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Makassar</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi Selatan</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Yogyakarta</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawa</p>
-                    </div>
+                    <a href="{{ url('destinations?province=34&city=3471') }}">
+                        <img src="{{ asset('img/static/destinations/jogja.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Yogyakarta</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> DI Yogyakarta</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Lombok</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi</p>
-                    </div>
+                <a href="{{ url('destinations?province=51&city=5171') }}">
+                        <img src="{{ asset('img/static/destinations/bali.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Denpasar</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Bali</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -112,154 +125,70 @@
 
 <div class="container pb-5">
     <div class="row">
+        <div class="col-md-12">
+        </div>
+        @foreach ($destinations as $destination)
         <div class="col-md-3 my-3">
             <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
+                <img src='{{ asset("img/destinations/$destination->picture") }}' class="position-absolute" height="150%" alt="">
                 <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
+                    <p class="text-left mx-5 mb-0 badge badge-warning">{{ $destination->category->name }}</p>
+                    <h2 class="myfont-arciform">{{ $destination->name }}</h2>
+                    <p class="text-small"><span><i class="fas fa-map-marker-alt"></i> {{ $destination->province->name }}</span></p>
                 </div>
                 <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
+                    <a href="{{ url("destination/$destination->id") }}" class="btn w-100 btn-warning shadow"><i class="fas fa-arrow-right"></i> Lebih Detail</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 my-3">
-            <div class="card-destination-page shadow-sm position-relative overflow-hidden text-center">
-                <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute" alt="">
-                <div class="position-relative card-destination-title text-white">
-                    <p class="text-left mx-5 mb-0">Gunung</p>
-                    <h1 class="myfont-arciform">Arjuna</h1>
-                    <p><span><i class="fas fa-map-marker-alt"></i> Pasuruan, Jawatimur</span></p>
-                </div>
-                <div class="text-left card-destination-des p-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur praesentium sunt minima sint dolor voluptatibus quos harum, veritatis nobis maxime.</p>
-                    <p class="icon-destination text-center mt-4">
-                        <span class="mr-3"><i class="text-danger fas fa-eye"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-comment"></i> 1</span>
-                        <span class="mr-3"><i class="text-danger fas fa-share"></i> 1</span></p>
-                    <button class="btn btn-warning shadow-warning"><i class="fas fa-arrow-right"></i> Lebih Detail</button>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="text-right">
-        <button class="btn btn-warning shadow-warning w-25"><i class="fas fa-arrow-right"></i> Lebih banyak</button>
+        {{ $destinations->links() }}
     </div>
 </div>
+
+<script>
+$('#province-select').change(function() {
+    var id_prov = $(this).val()
+    $.ajax({
+        url: "{{ url('cities') }}" + "/" + id_prov,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            if(data.success === true) {
+                var city;
+                city = '<option value="">Pilih Kota / Kabupaten</option>';
+                $.each(data.data, function(key, value) {
+                    city += '<option value="' + value.id + '">' + value.name + '</option>'
+                });
+                $('#city-select').attr('disabled', false);
+                $('#city-select').html(city);
+            }
+        }
+    })
+});
+$('#city-select').change(function() {
+    var id_city = $(this).val();
+    $.ajax({
+        url: "{{ url('districts') }}" + "/" + id_city,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            if(data.success === true) {
+                var district;
+                district = '<option value="">Pilih Kecamatan</option>'
+                $.each(data.data, function(key, value) {
+                    district += '<option value="' + value.id + '">' + value.name + '</option>'
+                });
+                $('#district-select').attr('disabled', false);
+                $('#district-select').html(district);
+            }
+        }
+    })
+});
+</script>
 
 @endsection

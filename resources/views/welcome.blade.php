@@ -9,15 +9,18 @@
     <ol class="carousel-indicators caraousel-indicators-jumbotron">
         <li data-target="#carouselId" data-slide-to="0" class="active"></li>
         <li data-target="#carouselId" data-slide-to="1"></li>
+        <li data-target="#carouselId" data-slide-to="2"></li>
+        <li data-target="#carouselId" data-slide-to="3"></li>
+        <li data-target="#carouselId" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner-jumbotron" role="listbox">
         <div class="carousel-item carousel-item-jumbotron active">
             <div class="my-div-jumbotron position-relative w-100">
-                <img src="{{ asset('img/static/wall2.jpg') }}" alt="First slide">
+                <img src="{{ asset('img/static/destinations/jawa.jpg') }}" alt="First slide">
                 <div class="carousel-caption carousel-caption-jumbotron d-none d-md-block">
                     <h3>JAVA</h3>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    <button class="btn btn-danger shadow-danger px-4 mx-3">List Destination</button>
+                    <a href="{{ url('destinations?province=35') }}" class="btn btn-danger shadow-danger px-4 mx-3">List Destination</a>
                     <button class="btn text-white btn-transparent mx-3 underline"><i class="fas fa-map-marker-alt"></i> View Map</button>
                 </div>
             </div>
@@ -25,10 +28,46 @@
         </div>
         <div class="carousel-item carousel-item-jumbotron">
             <div class="my-div-jumbotron position-relative w-100">
-                <img src="{{ asset('img/static/wall1.jpg') }}" alt="First slide">
+                <img src="{{ asset('img/static/destinations/sumatra.jpg') }}" alt="First slide">
                 <div class="carousel-caption carousel-caption-jumbotron d-none d-md-block">
                     <h3>SUMATRA</h3>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+                    <a href="{{ url('destinations?province=12') }}" class="btn btn-danger shadow-danger px-4 mx-3">List Destination</a>
+                    <button class="btn text-white btn-transparent mx-3 underline"><i class="fas fa-map-marker-alt"></i> View Map</button>
+                </div>
+            </div>
+            <div class="overlay-black"></div>
+        </div>
+        <div class="carousel-item carousel-item-jumbotron">
+            <div class="my-div-jumbotron position-relative w-100">
+                <img src="{{ asset('img/static/destinations/papua.jpg') }}" alt="First slide">
+                <div class="carousel-caption carousel-caption-jumbotron d-none d-md-block">
+                    <h3>PAPUA</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    <a href="{{ url('destinations?province=94') }}" class="btn btn-danger shadow-danger px-4 mx-3">List Destination</a>
+                    <button class="btn text-white btn-transparent mx-3 underline"><i class="fas fa-map-marker-alt"></i> View Map</button>
+                </div>
+            </div>
+            <div class="overlay-black"></div>
+        </div>
+        <div class="carousel-item carousel-item-jumbotron">
+            <div class="my-div-jumbotron position-relative w-100">
+                <img src="{{ asset('img/static/destinations/kalimantan.jpg') }}" alt="First slide">
+                <div class="carousel-caption carousel-caption-jumbotron d-none d-md-block">
+                    <h3>KALIMANTAN</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    <a href="{{ url('destinations?province=64') }}" class="btn btn-danger shadow-danger px-4 mx-3">List Destination</a>
+                    <button class="btn text-white btn-transparent mx-3 underline"><i class="fas fa-map-marker-alt"></i> View Map</button>
+                </div>
+            </div>
+            <div class="overlay-black"></div>
+        </div>
+        <div class="carousel-item carousel-item-jumbotron">
+            <div class="my-div-jumbotron position-relative w-100">
+                <img src="{{ asset('img/static/destinations/sulawesi.jpg') }}" alt="First slide">
+                <div class="carousel-caption carousel-caption-jumbotron d-none d-md-block">
+                    <h3>SULAWESI</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                     <button class="btn btn-danger shadow-danger px-4 mx-3">List Destination</button>
                     <button class="btn text-white btn-transparent mx-3 underline"><i class="fas fa-map-marker-alt"></i> View Map</button>
                 </div>
@@ -52,7 +91,7 @@
     <h3 class="text-danger myfont-arciform"><i class="fas fa-search-location "></i> Discover your destinations</h3>
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mt-4 px-4">
-            <form method="POST">
+            <form method="GET" action="{{ url('destinations') }}">
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text" name="name" id="name-destinations" class="form-control" placeholder="Cari destinasimu.." aria-describedby="helpId">
@@ -64,25 +103,29 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <select name="ctr" id="ctr" class="form-control">
+                    <select name="category" id="category" class="form-control">
                         <option value="">Pilih Category</option>
-                        <option value="jawatimur">Gunung</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="prov" id="prov" class="form-control">
+                    <select name="province" id="province-select" class="form-control">
                         <option value="">Pilih Provinsi</option>
-                        <option value="jawatimur">Jawatimur</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="city" id="city" class="form-control">
+                    <select name="city" id="city-select" class="form-control">
                         <option value="">Pilih Kota / Kabupaten</option>
                         <option value="malang">Malang</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="distict" id="distict" class="form-control">
+                    <select name="district" id="district-select" class="form-control">
                         <option value="">Pilih Kecamatan</option>
                         <option value="malang">Kanjuruan</option>
                     </select>
@@ -95,47 +138,57 @@
         <div class="col-md-8 highlight-destinations">
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Malang</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawa</p>
-                    </div>
+                    <a href="{{ url('destinations?province=35&city=3507') }}">
+                        <img src="{{ asset('img/static/destinations/malang.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Malang</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawatimur</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Lombok</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi</p>
-                    </div>
+                    <a href="{{ url('destinations?province=52&city=5202') }}">
+                        <img src="{{ asset('img/static/destinations/lombok.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Lombok</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> NTB</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall1.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Makassar</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sumatra</p>
-                    </div>
+                    <a href="{{ url('destinations?province=73&city=7371') }}">
+                        <img src="{{ asset('img/static/destinations/makassar.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Makassar</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi Selatan</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Yogyakarta</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Jawa</p>
-                    </div>
+                    <a href="{{ url('destinations?province=34&city=3471') }}">
+                        <img src="{{ asset('img/static/destinations/jogja.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Yogyakarta</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> DI Yogyakarta</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="top_destination overflow-hidden bg-dark position-relative shadow">
-                    <img src="{{ asset('img/static/wall2.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
-                    <div class="position-relative text-white text-center top_destination_caption">
-                        <h3 class="myfont-arciform">Lombok</h3>
-                        <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Sulawesi</p>
-                    </div>
+                <a href="{{ url('destinations?province=51&city=5171') }}">
+                        <img src="{{ asset('img/static/destinations/bali.jpg') }}" class="position-absolute top_destination_img" alt="sumatra">
+                        <div class="position-relative text-white text-center top_destination_caption">
+                            <h3 class="myfont-arciform">Denpasar</h3>
+                            <p class="top_destination_prov"><i class="fas fa-map-marked-alt"></i> Bali</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -148,134 +201,39 @@
     <div class="container py-4">
         <div class="text-center">
             <h3 class="text-danger myfont-arciform mb-4"><i class="far fa-calendar-alt"></i> Awesome festivals</h3>
-            <button class="btn btn-danger shadow-danger btn-sm pr-3"><i class="fas fa-mosque mx-2"></i> Kebudayaan</button>
-            <button class="btn btn-white bg-white btn-sm pr-3"><i class="fas fa-gamepad mx-2"></i> Hiburan</button>
-            <button class="btn btn-white bg-white btn-sm pr-3"><i class="fas fa-clock mx-2"></i> Sejarah</button>
+            <a href="{{ url('/?criteria=1') }}" class="btn {{ (request()->get('criteria') == 1) ? 'btn-danger shadow-danger' : 'btn-white bg-white' }} btn-sm pr-3"><i class="fas fa-mosque mx-2"></i> Kebudayaan</a>
+            <a href="{{ url('/?criteria=2') }}" class="btn {{ (request()->get('criteria') == 2) ? 'btn-danger shadow-danger' : 'btn-white bg-white' }} btn-sm pr-3"><i class="fas fa-gamepad mx-2"></i> Teknologi</a>
+            <a href="{{ url('/?criteria=3') }}" class="btn {{ (request()->get('criteria') == 3) ? 'btn-danger shadow-danger' : 'btn-white bg-white' }} btn-sm pr-3"><i class="far fa-calendar mx-2"></i> Event</a>
         </div>
         <div class="row mt-4">
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
+            @foreach ($festivals as $festival)
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card border-0 card-fest position-relative">
+                        <div class="img-fest overflow-hidden bg-dark">
+                            <img class="card-img-top" src='{{ asset("img/festivals/$festival->picture") }}' alt="">
+                        </div>
+                        <div class="card-body card-body-fest shadow-sm">
+                            @if ($festival->criteria_id == "1")
+                                <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> {{ $festival->criteria->name }}</div>
+                            @else
+                                @if ($festival->criteria_id == "2")
+                                    <div class="kriteria-fest position-absolute bg-primary text-white px-4 py-1"><i class="fas fa-gamepad"></i> {{ $festival->criteria->name }}</div>
+                                @else
+                                    <div class="kriteria-fest position-absolute bg-success text-white px-4 py-1"><i class="fas fa-calendar"></i> {{ $festival->criteria->name }}</div>
+                                @endif
+                            @endif
+                            <h4 class="card-title mb-0">{{ $festival->name }}</h4>
+                            <p class="date-fest d-inline mr-3">
+                                {{ $festival->city->name }}, {{ $festival->created_at }}
+                            </p>
+                            <p class="card-text"><a class="btn btn-warning shadow-warning btn-sm" href='{{ url("festival/$festival->id") }}'> <i class="fas fa-eye "></i> Detail </a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card border-0 card-fest position-relative">
-                    <div class="img-fest overflow-hidden bg-dark">
-                        <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                    </div>
-                    <div class="card-body card-body-fest shadow-sm">
-                        <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                        <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                        <p class="date-fest d-inline mr-3">
-                            Malang, 12 juni 2020
-                        </p>
-                        <p class="icon-fest d-inline">
-                            <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                            <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                        </p>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="text-right">
-            <button class="btn btn-warning shadow-warning w-25"><i class="fas fa-arrow-right"></i> Selengkapnya</button>
+            <a href="{{ url('festivals') }}" class="btn btn-warning shadow-warning w-25"><i class="fas fa-arrow-right"></i> Selengkapnya</a>
         </div>
     </div>
 </div>
@@ -291,25 +249,28 @@
             <div class="col-md-6">
                 {{-- <button class="btn btn-warning shadow"><i class="far fa-envelope"></i> Send to Email</button>
                 <button class="btn btn-white bg-white"><i class="fab fa-instagram"></i> Send to Instagram</button> --}}
-                <div class="form-group my-2">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control border-0" placeholder="Your Awesome Name Here..." aria-describedby="helpId">
-                </div>
-                <div class="form-group my-2">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control border-0" placeholder="example@domain.com" aria-describedby="helpId">
-                </div>
-                <div class="form-group my-2">
-                    <label for="subject">Subject</label>
-                    <input type="text" name="subject" id="subject" class="form-control border-0" placeholder="Your Subject Here..." aria-describedby="helpId">
-                </div>
-                <div class="form-group my-2">
-                    <label for="subject">Subject</label>
-                    <textarea name="description" id="description" cols="30" class="form-control border-0" rows="4" placeholder="Your suggestion critism Here..."></textarea>
-                </div>
-                <div class="text-right">
-                    <button class="btn btn-warning shadow px-5"><i class="fas fa-paper-plane"></i> Send</button>
-                </div>
+                <form method="POST" id="feedback-form">
+                    {{ csrf_field() }}
+                    <div class="form-group my-2">
+                        <label for="sender">Name</label>
+                        <input type="text" name="sender" id="sender" class="form-control border-0" placeholder="Your Awesome Name Here..." aria-describedby="helpId">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="form-control border-0" placeholder="example@domain.com" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" id="subject" class="form-control border-0" placeholder="Your Subject Here..." aria-describedby="helpId">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="subject">Description</label>
+                        <textarea name="description" id="description" cols="30" class="form-control border-0" rows="4" placeholder="Your suggestion critism Here..."></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-warning shadow px-5"><i class="fas fa-paper-plane"></i> Send</button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-6 py-5">
                 <div class="position-absolute add-contact shadow">
@@ -343,4 +304,73 @@
         </div>
     </div>
 </div>
+
+<script>
+ $('#province-select').change(function() {
+    var id_prov = $(this).val()
+    $.ajax({
+        url: "{{ url('cities') }}" + "/" + id_prov,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            if(data.success === true) {
+                var city;
+                city = '<option value="">Pilih Kota / Kabupaten</option>';
+                $.each(data.data, function(key, value) {
+                    city += '<option value="' + value.id + '">' + value.name + '</option>'
+                });
+                $('#city-select').attr('disabled', false);
+                $('#city-select').html(city);
+            }
+        }
+    })
+});
+$('#city-select').change(function() {
+    var id_city = $(this).val();
+    $.ajax({
+        url: "{{ url('districts') }}" + "/" + id_city,
+        type: "GET",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            if(data.success === true) {
+                var district;
+                district = '<option value="">Pilih Kecamatan</option>'
+                $.each(data.data, function(key, value) {
+                    district += '<option value="' + value.id + '">' + value.name + '</option>'
+                });
+                $('#district-select').attr('disabled', false);
+                $('#district-select').html(district);
+            }
+        }
+    })
+});
+$('#feedback-form').off().submit(function(e) {
+    e.preventDefault();
+    let token = $('input[name="_token"]').val();
+    $.ajax({
+        url: "{{ url('message/send') }}",
+        data: new FormData(this),
+        dataType: "json",
+        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': token,
+        },
+        success: function(data) {
+            if(data.success === true) {
+                alert('Berhasil')
+                $('#feedback-form').find('input:text, input:password, input:file, select, textarea').val('');
+                $('#feedback-form').find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+            } else {
+                alert('Gagal')
+            }
+        }
+    })
+})
+</script>
+
 @endsection

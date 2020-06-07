@@ -31,9 +31,9 @@
                 <p class="m-0 d-inline position-relative" id="title_nav">{{ env('APP_NAME') }}</p>
             </a>
             <div class="btn-group btn-menu-nav position-relative">
-                <button class="border-0 bg-white d-md-none position-relative search-toggle px-2">
+                {{-- <button class="border-0 bg-white d-md-none position-relative search-toggle px-2">
                     <i class="fas fa-search"></i>
-                </button>
+                </button> --}}
                 <button class="bg-white border-0 d-md-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -63,9 +63,9 @@
                     <li class="nav-item position-relative menu-item @yield('contact')">
                         <a class="nav-link" href="{{ url('contact') }}">CONTACT</a>
                     </li>
-                    <li class="nav-item border-0 pt-2 bg-white position-relative search-toggle search-lg-toggle px-2">
+                    {{-- <li class="nav-item border-0 pt-2 bg-white position-relative search-toggle search-lg-toggle px-2">
                         <i class="fas fa-search"></i>
-                    </li>
+                    </li> --}}
                     <li class="nav-item position-relative ml-md-2">
                         <a class="btn btn-danger text-light px-3" href="{{ url('login') }}" role="button" id="btn-login">
                             <i class="fas fa-user"></i> Login
@@ -96,7 +96,7 @@
 
     @yield('content')
 
-    <div class="container-fluid bg-dark text-white">
+    <div class="container-fluid bg-dark text-white position-relative">
         <div class="container py-3">
             <div class="row text-center">
                 <div class="col-md-6">

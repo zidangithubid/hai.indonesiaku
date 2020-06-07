@@ -26,6 +26,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="w-100 bg-danger rounded p-3">
+                <form action="" method="GET">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group mb-0">
@@ -36,7 +37,9 @@
                         <div class="form-group mb-0">
                             <select name="ctr" id="ctr" class="form-control border-0">
                                 <option value="">Pilih Category</option>
-                                <option value="kebudayaan">Kebudayaan</option>
+                                @foreach ($criterias as $criteria)
+                                    <option value="{{ $criteria->id }}">{{ $criteria->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -44,130 +47,42 @@
                         <button class="btn btn-warning shadow w-100"><i class="fas fa-search"></i> Cari</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+    @if ((request()->get('name') == "" || !request()->get('name')) && (request()->get('ctr') == "" || !request()->get('ctr')))
+        <a href="{{ url('festivals') }}" class="d-none btn btn-white bg-white shadow-sm"><i class="fas fa-eye"></i> Lihat semua</a>
+    @else
+        <a href="{{ url('festivals') }}" class="btn mt-4 btn-white bg-white shadow-sm"><i class="fas fa-eye"></i> Lihat semua</a>
+    @endif
     <div class="row mt-4">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
+        @foreach ($festivals as $festival)
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card border-0 card-fest position-relative">
+                    <div class="img-fest overflow-hidden bg-dark">
+                        <img class="card-img-top" src='{{ asset("img/festivals/$festival->picture") }}' alt="">
+                    </div>
+                    <div class="card-body card-body-fest shadow-sm">
+                        @if ($festival->criteria_id == "1")
+                            <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> {{ $festival->criteria->name }}</div>
+                        @else
+                            @if ($festival->criteria_id == "2")
+                                <div class="kriteria-fest position-absolute bg-primary text-white px-4 py-1"><i class="fas fa-gamepad"></i> {{ $festival->criteria->name }}</div>
+                            @else
+                                <div class="kriteria-fest position-absolute bg-success text-white px-4 py-1"><i class="fas fa-calendar"></i> {{ $festival->criteria->name }}</div>
+                            @endif
+                        @endif
+                        <h4 class="card-title mb-0">{{ $festival->name }}</h4>
+                        <p class="date-fest d-inline mr-3">
+                            {{ $festival->city->name }}, {{ $festival->created_at }}
+                        </p>
+                        <p class="card-text mt-3"><a class="btn btn-warning shadow-warning btn-sm" href='{{ url("festival/$festival->id") }}'> <i class="fas fa-eye "></i> Detail </a></p>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border-0 card-fest position-relative">
-                <div class="img-fest overflow-hidden bg-dark">
-                    <img class="card-img-top" src="{{ asset('img/static/wall2.jpg') }}" alt="">
-                </div>
-                <div class="card-body card-body-fest shadow-sm">
-                    <div class="kriteria-fest position-absolute bg-warning px-4 py-1"><i class="fas fa-mosque"></i> Kebudayaan</div>
-                    <h4 class="card-title mb-0">Festival Kebudayaan</h4>
-                    <p class="date-fest d-inline mr-3">
-                        Malang, 12 juni 2020
-                    </p>
-                    <p class="icon-fest d-inline">
-                        <span class="mr-2"><i class="fas fa-eye"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-comment"></i> 1 </span>
-                        <span class="mr-2"><i class="fas fa-share"></i> 1 </span>
-                    </p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ducimus?</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="text-right">
         <button class="btn btn-warning shadow-warning w-25"><i class="fas fa-arrow-right"></i> Selengkapnya</button>
